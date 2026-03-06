@@ -21,7 +21,14 @@ return {
     },
   },
 
-  { 'ethanholz/nvim-lastplace' },
+  {
+    'ethanholz/nvim-lastplace',
+    opts = {
+      lastplace_ignore_buftype = { 'quickfix', 'nofile', 'help' },
+      lastplace_ignore_filetype = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },
+      lastplace_open_folds = true,
+    },
+  },
 
   {
     'windwp/nvim-autopairs',
@@ -59,23 +66,30 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
-    opts = {
-      signs = {
-        add = { text = '▎' },
-        change = { text = '▎' },
-        delete = { text = '' },
-        topdelete = { text = '' },
-        changedelete = { text = '▎' },
-        untracked = { text = '┆' },
-      },
+    config = function()
+      vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = '#587c0c' })
+      vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = '#0c7d9d' })
+      vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = '#f14c4c' })
+      vim.api.nvim_set_hl(0, 'GitSignsTopdelete', { fg = '#f14c4c' })
+      vim.api.nvim_set_hl(0, 'GitSignsChangedelete', { fg = '#0c7d9d' })
+      vim.api.nvim_set_hl(0, 'GitSignsUntracked', { fg = '#587c0c' })
 
-      signcolumn = true,
-      numhl = false,
-      linehl = false,
-      word_diff = false,
-
-      current_line_blame = false,
-      on_attach = function() end,
-    },
+      require('gitsigns').setup {
+        signs = {
+          add = { text = '▎' },
+          change = { text = '▎' },
+          delete = { text = '' },
+          topdelete = { text = '' },
+          changedelete = { text = '▎' },
+          untracked = { text = '┆' },
+        },
+        signcolumn = true,
+        numhl = false,
+        linehl = false,
+        word_diff = false,
+        current_line_blame = false,
+        on_attach = function() end,
+      }
+    end,
   },
 }

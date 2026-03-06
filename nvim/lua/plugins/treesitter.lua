@@ -1,8 +1,33 @@
 return {
-  { -- Highlight, edit, and navigate code
+  {
     'nvim-treesitter/nvim-treesitter',
     config = function()
-      local filetypes = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
+      local filetypes = {
+        'awk',
+        'bash',
+        'c',
+        'cmake',
+        'cpp',
+        'diff',
+        'dockerfile',
+        'go',
+        'gomod',
+        'gosum',
+        'gowork',
+        'html',
+        'julia',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'nix',
+        'query',
+        'r',
+        'rnoweb',
+        'rust',
+        'vim',
+        'vimdoc',
+      }
       require('nvim-treesitter').install(filetypes)
       vim.api.nvim_create_autocmd('FileType', {
         pattern = filetypes,
