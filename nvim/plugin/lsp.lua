@@ -1,0 +1,15 @@
+vim.lsp.enable {
+  'lua_ls',
+  'gopls',
+  'marksman',
+  'nixd',
+  'rust_analyzer',
+  'systemd_lsp',
+  'dockerls',
+  'awk_ls',
+  'bashls',
+  'clangd',
+  'neocmake',
+  'r_language_server',
+  'julials',
+}
