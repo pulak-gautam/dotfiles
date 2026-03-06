@@ -48,18 +48,16 @@ return {
 
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
+  -- Using Lazy
   {
-    -- `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000,
+    'navarasu/onedark.nvim',
+    priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false },
-        },
+      require('onedark').setup {
+        style = 'darker',
       }
-      vim.cmd.colorscheme 'wildcharm'
+      require('onedark').load()
+      vim.cmd.colorscheme 'onedark'
     end,
   },
 
