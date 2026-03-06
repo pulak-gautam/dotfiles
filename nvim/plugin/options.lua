@@ -37,3 +37,5 @@ opt.title = true
 opt.titlestring = '%t%( %M%)%( (%{expand("%:~:h")})%)%a (nvim)'
 
 opt.undofile = true
+
+opt.updatetime = 2000

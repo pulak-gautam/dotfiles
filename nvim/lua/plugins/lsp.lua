@@ -1,28 +1,35 @@
 return {
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    opts = {
+      library = {
+        -- Load luvit types when the `vim.uv` word is found
+        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        { path = '/usr/share/awesome/lib/', words = { 'awesome' } },
+      },
+    },
+  },
+  { 'Bilal2453/luvit-meta', lazy = true },
+
   -- progress ui for lsp indexing
   { 'j-hui/fidget.nvim', opts = {} },
-  { "folke/lazydev.nvim", opts = {} },
-  { "Bilal2453/luvit-meta", lazy = true },
 
   -- diagnostics lines
   {
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
     config = function()
-      require("lsp_lines").setup()
-      vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
+      require('lsp_lines').setup()
+      vim.diagnostic.config { virtual_text = true, virtual_lines = false }
 
-      vim.keymap.set(
-        "", 
-        "<leader>l", 
-        function()
-          local config = vim.diagnostic.config() or {}
-          if config.virtual_text then
-            vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
-          else
-            vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
-          end
-        end, 
-        { desc = "Toggle lsp_lines" })
+      vim.keymap.set('', '<leader>l', function()
+        local config = vim.diagnostic.config() or {}
+        if config.virtual_text then
+          vim.diagnostic.config { virtual_text = false, virtual_lines = true }
+        else
+          vim.diagnostic.config { virtual_text = true, virtual_lines = false }
+        end
+      end, { desc = 'Toggle lsp_lines' })
     end,
   },
 

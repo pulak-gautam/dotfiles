@@ -7,9 +7,8 @@ set('n', '<c-l>', '<c-w><c-l>')
 set('n', '<c-h>', '<c-w><c-h>')
 
 -- move around tabs
-vim.keymap.set("n", "L", ":tabnext<CR>", { desc = "Next Tab" })
-vim.keymap.set("n", "H", ":tabprevious<CR>", { desc = "Previous Tab" })
-
+vim.keymap.set('n', 'L', ':tabnext<CR>', { desc = 'Next Tab' })
+vim.keymap.set('n', 'H', ':tabprevious<CR>', { desc = 'Previous Tab' })
 
 set('n', '<leader>x', '<cmd>.lua<CR>', { desc = 'Execute the current line' })
 set('n', '<leader><leader>x', '<cmd>source %<CR>', { desc = 'Execute the current file' })
@@ -72,3 +71,6 @@ end, { expr = true })
 
 set('v', '<', '<gv', { noremap = true, silent = true })
 set('v', '>', '>gv', { noremap = true, silent = true })
+
+set('n', '<CR>', 'o<Esc>', { noremap = true })
+set('n', '<S-CR>', 'O<Esc>', { noremap = true })
