@@ -12,6 +12,7 @@ vim.lsp.enable {
   'neocmake',
   'r_language_server',
   'julials',
+  'hls',
 }
 
 local builtin = require 'telescope.builtin'

@@ -27,6 +27,7 @@ return {
         'rust',
         'vim',
         'vimdoc',
+        'haskell',
       }
       require('nvim-treesitter').install(filetypes)
       vim.api.nvim_create_autocmd('FileType', {

@@ -25,6 +25,7 @@ return {
           'neocmake',
           'r_language_server',
           'julials',
+          'hls',
         },
       }
     end,
