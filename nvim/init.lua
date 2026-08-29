@@ -23,3 +23,13 @@ require('lazy').setup({ import = 'plugins' }, {
     notify = false,
   },
 })
+
+require 'config.options'
+require 'config.keymaps'
+require 'config.autocmds'
+require 'config.clipboard'
+require 'config.filetypes'
+require 'config.terminal'
+require 'config.lsp'
+
+vim.cmd.colorscheme 'aizen_dark'

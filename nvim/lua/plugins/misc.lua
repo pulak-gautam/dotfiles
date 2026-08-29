@@ -39,39 +39,23 @@ return {
   {
     'mrjones2014/smart-splits.nvim',
     keys = {
-      { '<A-H>', function() require('smart-splits').resize_left() end, mode = 'n', desc = 'Resize split left' },
-      { '<A-J>', function() require('smart-splits').resize_down() end, mode = 'n', desc = 'Resize split down' },
-      { '<A-K>', function() require('smart-splits').resize_up() end, mode = 'n', desc = 'Resize split up' },
-      { '<A-L>', function() require('smart-splits').resize_right() end, mode = 'n', desc = 'Resize split right' },
+      { '<A-H>', function() require('smart-splits').resize_left() end, mode = { 'n', 't' }, desc = 'Resize split left' },
+      { '<A-J>', function() require('smart-splits').resize_down() end, mode = { 'n', 't' }, desc = 'Resize split down' },
+      { '<A-K>', function() require('smart-splits').resize_up() end, mode = { 'n', 't' }, desc = 'Resize split up' },
+      { '<A-L>', function() require('smart-splits').resize_right() end, mode = { 'n', 't' }, desc = 'Resize split right' },
+      { '<C-h>', function() require('smart-splits').resize_left() end, mode = { 'n', 't' }, desc = 'Resize split left' },
+      { '<C-j>', function() require('smart-splits').resize_down() end, mode = { 'n', 't' }, desc = 'Resize split down' },
+      { '<C-k>', function() require('smart-splits').resize_up() end, mode = { 'n', 't' }, desc = 'Resize split up' },
+      { '<C-l>', function() require('smart-splits').resize_right() end, mode = { 'n', 't' }, desc = 'Resize split right' },
     },
   },
 
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
-  -- Using Lazy
-  {
-    'navarasu/onedark.nvim',
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      require('onedark').setup {
-        style = 'darker',
-      }
-      require('onedark').load()
-      vim.cmd.colorscheme 'onedark'
-    end,
-  },
-
   {
     'lewis6991/gitsigns.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
-      vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = '#587c0c' })
-      vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = '#0c7d9d' })
-      vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = '#f14c4c' })
-      vim.api.nvim_set_hl(0, 'GitSignsTopdelete', { fg = '#f14c4c' })
-      vim.api.nvim_set_hl(0, 'GitSignsChangedelete', { fg = '#0c7d9d' })
-      vim.api.nvim_set_hl(0, 'GitSignsUntracked', { fg = '#587c0c' })
-
       require('gitsigns').setup {
         signs = {
           add = { text = '▎' },

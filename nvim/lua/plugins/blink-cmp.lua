@@ -11,27 +11,19 @@ return {
         if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then return end
         return 'make install_jsregexp'
       end)(),
-      dependencies = {
-        -- {
-        --   'rafamadriz/friendly-snippets',
-        --   config = function()
-        --     require('luasnip.loaders.from_vscode').lazy_load()
-        --   end,
-        -- },
-      },
       opts = {},
     },
   },
 
   opts = {
-    keymap = { preset = 'default' },
+    keymap = { preset = 'super-tab' },
 
     appearance = {
       nerd_font_variant = 'mono',
     },
 
     sources = {
-      default = { 'buffer', 'path' },
+      default = { 'lsp', 'buffer', 'path', 'snippets' },
     },
 
     snippets = { preset = 'luasnip' },
