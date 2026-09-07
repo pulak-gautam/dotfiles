@@ -23,6 +23,7 @@ return {
 
       -- Tablines
       require('mini.tabline').setup()
+      vim.api.nvim_set_hl(0, 'MiniTablineCurrent', { bold = true, underline = true, fg = '#50fa7b' })
     end,
   },
 }
