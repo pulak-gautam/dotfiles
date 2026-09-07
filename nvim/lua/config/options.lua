@@ -14,7 +14,7 @@ opt.smartcase = true
 opt.ignorecase = true
 
 opt.number = true
-opt.relativenumber = true
+opt.relativenumber = false
 
 opt.splitbelow = true
 opt.splitright = true
@@ -39,3 +39,6 @@ opt.title = true
 opt.undofile = true
 
 opt.updatetime = 2000
+
+-- show word diffs in vimdiff
+vim.opt.diffopt:append 'linematch:60'

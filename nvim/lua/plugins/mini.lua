@@ -1,6 +1,7 @@
 return {
   {
     'nvim-mini/mini.nvim',
+    version = false,
     config = function()
       -- Better Around/Inside textobjects
       --
@@ -16,6 +17,12 @@ return {
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+
+      -- Move a selection
+      require('mini.move').setup()
+
+      -- Tablines
+      require('mini.tabline').setup()
     end,
   },
 }

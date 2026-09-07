@@ -26,6 +26,8 @@ return {
           'r_language_server',
           'julials',
           'hls',
+          'ts_ls',
+          'zls',
         },
       }
     end,

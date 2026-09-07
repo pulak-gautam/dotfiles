@@ -43,10 +43,10 @@ return {
       { '<A-J>', function() require('smart-splits').resize_down() end, mode = { 'n', 't' }, desc = 'Resize split down' },
       { '<A-K>', function() require('smart-splits').resize_up() end, mode = { 'n', 't' }, desc = 'Resize split up' },
       { '<A-L>', function() require('smart-splits').resize_right() end, mode = { 'n', 't' }, desc = 'Resize split right' },
-      { '<C-h>', function() require('smart-splits').resize_left() end, mode = { 'n', 't' }, desc = 'Resize split left' },
-      { '<C-j>', function() require('smart-splits').resize_down() end, mode = { 'n', 't' }, desc = 'Resize split down' },
-      { '<C-k>', function() require('smart-splits').resize_up() end, mode = { 'n', 't' }, desc = 'Resize split up' },
-      { '<C-l>', function() require('smart-splits').resize_right() end, mode = { 'n', 't' }, desc = 'Resize split right' },
+      { '<C-h>', function() require('smart-splits').move_cursor_left() end, mode = { 'n', 't' }, desc = 'Resize split left' },
+      { '<C-j>', function() require('smart-splits').move_cursor_down() end, mode = { 'n', 't' }, desc = 'Resize split down' },
+      { '<C-k>', function() require('smart-splits').move_cursor_up() end, mode = { 'n', 't' }, desc = 'Resize split up' },
+      { '<C-l>', function() require('smart-splits').move_cursor_right() end, mode = { 'n', 't' }, desc = 'Resize split right' },
     },
   },
 
@@ -73,6 +73,13 @@ return {
         on_attach = function() end,
       }
     end,
+    keys = {
+      { '<leader>gg', function() require('gitsigns').setqflist 'all' end, mode = { 'n' } },
+    },
+  },
+  {
+    'tpope/vim-fugitive',
+    cmd = { 'Git', 'G' },
   },
   {
     'abecodes/tabout.nvim',

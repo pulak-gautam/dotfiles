@@ -1,61 +1,70 @@
 local M = {}
 
+local function blend(fg, bg, alpha)
+  fg = fg:gsub('#', '')
+  bg = bg:gsub('#', '')
+  local r1, g1, b1 = tonumber(fg:sub(1, 2), 16), tonumber(fg:sub(3, 4), 16), tonumber(fg:sub(5, 6), 16)
+  local r2, g2, b2 = tonumber(bg:sub(1, 2), 16), tonumber(bg:sub(3, 4), 16), tonumber(bg:sub(5, 6), 16)
+  local r = math.floor(r1 * alpha + r2 * (1 - alpha))
+  local g = math.floor(g1 * alpha + g2 * (1 - alpha))
+  local b = math.floor(b1 * alpha + b2 * (1 - alpha))
+  return string.format('#%02x%02x%02x', r, g, b)
+end
+
 M.dark = {
-  base = "#1a1a1a",
-  mantle = "#141414",
-  crust = "#0d0d0d",
-  surface0 = "#252525",
-  surface1 = "#333333",
-  surface2 = "#444444",
-  text = "#d0d6f0",
-  subtext = "#7c8498",
-  overlay = "#9098b0",
-  peach = "#f8b080",
-  mauve = "#c8a2f4",
-  green = "#a4e09c",
-  yellow = "#f5dea4",
-  blue = "#84b4f8",
-  cyan = "#90dcd0",
-  sky = "#84d8e8",
-  red = "#f08898",
-  pink = "#f2c0e4",
-  lavender = "#b0b8fc",
+  base = '#1a1a1a',
+  mantle = '#141414',
+  crust = '#0d0d0d',
+  surface0 = '#252525',
+  surface1 = '#333333',
+  surface2 = '#444444',
+  text = '#d0d6f0',
+  subtext = '#7c8498',
+  overlay = '#9098b0',
+  peach = '#f8b080',
+  mauve = '#c8a2f4',
+  green = '#a4e09c',
+  yellow = '#f5dea4',
+  blue = '#84b4f8',
+  cyan = '#90dcd0',
+  sky = '#84d8e8',
+  red = '#f08898',
+  pink = '#f2c0e4',
+  lavender = '#b0b8fc',
 }
 
 M.light = {
-  base = "#f0f2f6",
-  mantle = "#e8eaf0",
-  crust = "#dde0e8",
-  surface0 = "#cdd2dc",
-  surface1 = "#bdc2cc",
-  surface2 = "#adb2bc",
-  text = "#4a4d66",
-  subtext = "#8a8d9e",
-  overlay = "#9a9dac",
-  peach = "#fc6008",
-  mauve = "#8636ec",
-  green = "#3e9e28",
-  yellow = "#dd8c1a",
-  blue = "#1c64f2",
-  cyan = "#159096",
-  sky = "#02a2e2",
-  red = "#d00c36",
-  pink = "#e874c8",
-  lavender = "#7084fa",
+  base = '#f0f2f6',
+  mantle = '#e8eaf0',
+  crust = '#dde0e8',
+  surface0 = '#cdd2dc',
+  surface1 = '#bdc2cc',
+  surface2 = '#adb2bc',
+  text = '#4a4d66',
+  subtext = '#8a8d9e',
+  overlay = '#9a9dac',
+  peach = '#fc6008',
+  mauve = '#8636ec',
+  green = '#3e9e28',
+  yellow = '#dd8c1a',
+  blue = '#1c64f2',
+  cyan = '#159096',
+  sky = '#02a2e2',
+  red = '#d00c36',
+  pink = '#e874c8',
+  lavender = '#7084fa',
 }
 
 function M.setup(opts)
   opts = opts or {}
-  local style = opts.style or "dark"
-  local c = style == "light" and M.light or M.dark
+  local style = opts.style or 'dark'
+  local c = style == 'light' and M.light or M.dark
 
-  vim.cmd("hi clear")
-  if vim.fn.exists("syntax_on") then
-    vim.cmd("syntax reset")
-  end
+  vim.cmd 'hi clear'
+  if vim.fn.exists 'syntax_on' then vim.cmd 'syntax reset' end
 
   vim.o.background = style
-  vim.g.colors_name = "aizen_" .. style
+  vim.g.colors_name = 'aizen_' .. style
 
   local groups = {
     Normal = { fg = c.text, bg = c.base },
@@ -94,10 +103,10 @@ function M.setup(opts)
     Directory = { fg = c.blue },
     Title = { fg = c.peach, bold = true },
 
-    DiffAdd = { fg = c.green },
-    DiffChange = { fg = c.yellow },
-    DiffDelete = { fg = c.red },
-    DiffText = { fg = c.blue, underline = true },
+    DiffAdd = { bg = blend(c.green, c.base, 0.15), fg = c.green },
+    DiffChange = { bg = blend(c.yellow, c.base, 0.15), fg = c.text },
+    DiffDelete = { bg = blend(c.red, c.base, 0.15), fg = c.red },
+    DiffText = { bg = blend(c.green, c.base, 0.3), fg = c.green },
 
     Comment = { fg = c.overlay, italic = true },
     String = { fg = c.green },
@@ -141,22 +150,22 @@ function M.setup(opts)
     Todo = { fg = c.yellow, bold = true },
 
     -- TreeSitter
-    ["@variable"] = { fg = c.text },
-    ["@variable.parameter"] = { fg = c.red, italic = true },
-    ["@variable.builtin"] = { fg = c.red },
-    ["@constant"] = { fg = c.peach },
-    ["@constant.builtin"] = { fg = c.peach },
-    ["@string"] = { fg = c.green },
-    ["@function"] = { fg = c.peach },
-    ["@function.builtin"] = { fg = c.peach },
-    ["@keyword"] = { fg = c.mauve },
-    ["@type"] = { fg = c.yellow },
-    ["@type.builtin"] = { fg = c.yellow },
-    ["@property"] = { fg = c.text },
-    ["@punctuation"] = { fg = c.overlay },
-    ["@punctuation.bracket"] = { fg = c.overlay },
-    ["@tag"] = { fg = c.blue },
-    ["@tag.attribute"] = { fg = c.yellow },
+    ['@variable'] = { fg = c.text },
+    ['@variable.parameter'] = { fg = c.red, italic = true },
+    ['@variable.builtin'] = { fg = c.red },
+    ['@constant'] = { fg = c.peach },
+    ['@constant.builtin'] = { fg = c.peach },
+    ['@string'] = { fg = c.green },
+    ['@function'] = { fg = c.peach },
+    ['@function.builtin'] = { fg = c.peach },
+    ['@keyword'] = { fg = c.mauve },
+    ['@type'] = { fg = c.yellow },
+    ['@type.builtin'] = { fg = c.yellow },
+    ['@property'] = { fg = c.text },
+    ['@punctuation'] = { fg = c.overlay },
+    ['@punctuation.bracket'] = { fg = c.overlay },
+    ['@tag'] = { fg = c.blue },
+    ['@tag.attribute'] = { fg = c.yellow },
 
     -- Diagnostics
     DiagnosticError = { fg = c.red },
@@ -168,6 +177,9 @@ function M.setup(opts)
     GitSignsAdd = { fg = c.green },
     GitSignsChange = { fg = c.yellow },
     GitSignsDelete = { fg = c.red },
+    GitSignsAddInline = { bg = blend(c.green, c.base, 0.3), fg = c.green },
+    GitSignsDeleteInline = { bg = blend(c.red, c.base, 0.3), fg = c.red },
+    GitSignsChangeInline = { bg = blend(c.yellow, c.base, 0.3), fg = c.yellow },
   }
 
   for group, settings in pairs(groups) do
