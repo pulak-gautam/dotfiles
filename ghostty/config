@@ -13,4 +13,6 @@ keybind = performable:alt+shift+k=resize_split:up,15
 keybind = performable:alt+shift+l=resize_split:right,15
 
 keybind = ctrl+shift+r=prompt_tab_title
-keybind = ctrl+w=close_surface
+keybind = ctrl+shift+w=close_surface
+
+font-size = 11
